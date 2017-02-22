@@ -48,17 +48,18 @@ export default class SummaryModal extends Component {
           autoScrollBodyContent
         >
           {cartItems.map((item) => {
-            return <p>{item.name} {item.sellingPrice} x{item.quantity} = {item.sellingPrice * item.quantity}</p>;
+            return <h3>{item.name} {item.sellingPrice} x{item.quantity} = {item.sellingPrice * item.quantity}</h3>;
           })}
-          <p>
+          <hr />
+          <h2>
             Cash: {this.state.cash}
-          </p>
-          <p>
+          </h2>
+          <h2>
             Total {cartTotal}
-          </p>
-          <p>
+          </h2>
+          <h2>
             Change: {change}
-          </p>
+          </h2>
           <TextField
             floatingLabelText="Cash"
             type="number"
@@ -66,7 +67,7 @@ export default class SummaryModal extends Component {
             onChange={(e) => {
               this.setState({
                 cash: e.target.value,
-                error: change < 0 ? 'Insufficient cash' : '',
+                error: e.target.value - cartTotal < 0 ? 'Insufficient cash' : '',
               })
             }}
           />

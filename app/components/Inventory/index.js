@@ -107,11 +107,11 @@ export default class Inventory extends Component {
         />
         {isDeletionEnabled
           ? (
-          <FlatButton
-            label={`Delete selected ${selectedItems.length > 1 ? 'items' : 'item'} (${selectedItems.length})`}
-            onTouchTap={isDeletionEnabled ? this.removeSelectedItems : null}
-            primary
-          />
+            <FlatButton
+              label={`Delete selected ${selectedItems.length > 1 ? 'items' : 'item'} (${selectedItems.length})`}
+              onTouchTap={isDeletionEnabled ? this.removeSelectedItems : null}
+              primary
+            />
           )
           : null}
       </div>
@@ -292,7 +292,7 @@ export default class Inventory extends Component {
                       actions={actions}
                       initialValues={initialValues}
                       selected={this.state.selectedRows.includes(i)}
-                      itemsName={items.map((item) => item.name)}
+                      itemsName={items.map(({ name }) => name)}
                       selectedIndex={i}
                     />
                   );
@@ -314,9 +314,9 @@ export default class Inventory extends Component {
                       {this.state.isDrawerOpen
                         ? null
                         : (
-                        <IconButton onTouchTap={() => actions.editRowItem(i)} touch>
-                          <ModeEdit />
-                        </IconButton>
+                          <IconButton onTouchTap={() => actions.editRowItem(i)} touch>
+                            <ModeEdit />
+                          </IconButton>
                         )
                       }
                     </TableRowColumn>

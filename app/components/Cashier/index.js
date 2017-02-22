@@ -225,6 +225,7 @@ export default class Cashier extends Component {
         else actions.toggleSnackbar(`${msg} was synced.`);
       });
     }
+    this.setState({ isSummaryOpen: false });
   }
 
   handleSearch = (e) => {
@@ -277,7 +278,7 @@ export default class Cashier extends Component {
       <div>
         <SummaryModal
           cartItems={cart}
-          handleonSubmit={this.submitCart}
+          handleSubmit={this.submitCart}
           handleCancel={() => this.setState({ isSummaryOpen: false })}
           isOpen={state.isSummaryOpen}
           cartTotal={cartTotal}
@@ -410,7 +411,7 @@ export default class Cashier extends Component {
           <div className="col-md-12">
             <div style={styles.tilesContainer}>
               <GridList cellHeight={205} cols={4} padding={9}>
-                {tiles.filter((tile) => RegExp(`(${state.searchText})+`, 'ig').test(tile.name || tile))
+                {tiles.filter((tile) => RegExp(`(${state.searchText})+`, 'ig').test(tile.feet ? `${tile.feet}ft ${tile.name}` : tile.name || tile))
                   .map((tile, i) => (
                     <Paper
                       zDepth={2}

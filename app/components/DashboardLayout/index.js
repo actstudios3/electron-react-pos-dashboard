@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import AppBar from 'material-ui/AppBar';
@@ -14,6 +15,7 @@ import Cart from 'material-ui/svg-icons/action/shopping-cart';
 import Folder from 'material-ui/svg-icons/file/folder';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
+import { clearCart } from './../../redux/modules/cart';
 
 const styles = {
   bodyStyle: {
@@ -43,6 +45,7 @@ const styles = {
 };
 
 @Radium
+@connect()
 export default class DashboardLayout extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired
@@ -62,7 +65,7 @@ export default class DashboardLayout extends Component {
             params.timestamp
             ? (
               <Link to="/Activities">
-                <IconButton>
+                <IconButton onTouchTap={() => this.props.dispatch(clearCart())}>
                   <Close color="white" />
                 </IconButton>
               </Link>
